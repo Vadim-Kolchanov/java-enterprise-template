@@ -1,0 +1,32 @@
+management:
+  server:
+    port: 8081
+
+spring:
+  application:
+    name: ms-notification-core
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: ${SPRING_FLYWAY_ENABLED:true}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  use-fqn: true
+
+settings:
+  env: ${SETTINGS_ENV}
+  logging:
+    level: ${SETTINGS_LOGGING_LEVEL:INFO}
+  push-notification:
+    provider: ${SETTINGS_PUSH_NOTIFICATION_PROVIDER:local}

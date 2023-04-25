@@ -1,0 +1,106 @@
+[versions]
+# Project modules
+## Common libs
+lib-exception-handler-version = "0.0.1"
+lib-logging-version = "0.0.1"
+lib-test-version = "0.0.1"
+lib-gateway-starter-version = "0.0.1"
+lib-common-version = "0.0.1"
+
+## Api
+notification-api-version = "0.0.1"
+
+# External dependencies
+## Kotlin
+kotlin-version = "1.7.21"
+
+## Logging
+logback-more-appenders-version = "1.8.7"
+kotlin-logging-version = "3.0.4"
+
+## Databases
+postgresql-version = "42.4.0"
+
+## Spring
+spring-boot-version = "2.7.5"
+spring-dependency-management-version = "1.1.0"
+springdoc-openapi-version = "1.6.13"
+spring-cloud-feign-version = "3.1.5"
+spring-cloud-gateway-version = "3.1.4"
+spring-mockk-version = "3.1.1"
+
+## Tests
+junit-version = "5.8.2"
+testcontainers-version = "1.16.3"
+mockk-version = "1.12.3"
+
+# Plugins
+openapi-gradle-plugin-version = "1.3.4"
+
+## Other
+firebase-admin-version = "9.1.1"
+hibernate-jsonb-version = "2.20.0"
+apache-common-lang3-version = "3.0"
+
+[libraries]
+# Project modules
+## Common libs
+libExceptionHandler = { module = "com.jet:lib-exception-handler", version.ref = "lib-exception-handler-version" }
+libLogging = { module = "com.jet:lib-logging", version.ref = "lib-logging-version" }
+libTest = { module = "com.jet:lib-test", version.ref = "lib-test-version" }
+libGatewayStarter = { module = "com.jet:lib-gateway-starter", version.ref = "lib-gateway-starter-version" }
+libCommon = { module = "com.jet:lib-common", version.ref = "lib-common-version" }
+
+## Api
+msNotificationApi = { module = "com.jet:ms-notification-api", version.ref = "notification-api-version" }
+
+# External dependencies
+## Kotlin
+kotlinJdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
+
+## Logging
+kotlinLogging = { module = "io.github.microutils:kotlin-logging", version.ref = "kotlin-logging-version" }
+logbackMoreAppenders = { module = "com.sndyuk:logback-more-appenders", version.ref = "logback-more-appenders-version" }
+
+## Databases
+flyway = { module = "org.flywaydb:flyway-core" }
+postgresql = { module = "org.postgresql:postgresql", version.ref = "postgresql-version" }
+
+## Spring
+springBootDependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot-version" }
+springCloudStarterFeign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign", version.ref = "spring-cloud-feign-version" }
+springCloudStarterGateway = { module = "org.springframework.cloud:spring-cloud-starter-gateway", version.ref = "spring-cloud-gateway-version" }
+springCloudOpenfeignCore = { module = "org.springframework.cloud:spring-cloud-openfeign-core", version.ref = "spring-cloud-feign-version" }
+springdocOpenapiUi = { module = "org.springdoc:springdoc-openapi-ui", version.ref = "springdoc-openapi-version" }
+springdocOpenapiKotlin = { module = "org.springdoc:springdoc-openapi-kotlin", version.ref = "springdoc-openapi-version" }
+springMockk = { module = "com.ninja-squad:springmockk", version.ref = "spring-mockk-version" }
+springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web" }
+springBootStarterDataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test" }
+springBootStarterQuartz = { module = "org.springframework.boot:spring-boot-starter-quartz" }
+
+## Tests
+junitApi = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-version" }
+junitParams = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit-version" }
+junitEngine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-version" }
+testcontainersCore = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers-version" }
+testcontainersJunit = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers-version" }
+testcontainersPostgresql = { module = "org.testcontainers:postgresql", version.ref = "testcontainers-version" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk-version" }
+
+## Other
+firebaseAdmin = { module = "com.google.firebase:firebase-admin", version.ref = "firebase-admin-version" }
+hibernateJsonb = { module = "com.vladmihalcea:hibernate-types-55", version.ref = "hibernate-jsonb-version" }
+apacheCommonLang3 = { module = "org.apache.commons:commons-lang3", version.ref = "apache-common-lang3-version" }
+
+[plugins]
+springBootPlugin = { id = "org.springframework.boot", version.ref = "spring-boot-version" }
+springDependencyManagementPlugin = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management-version" }
+kotlinJvmPlugin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-version" }
+kotlinSpringPlugin = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin-version" }
+kotlinJpaPlugin = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin-version" }
+openapiGradlePlugin = { id = "org.springdoc.openapi-gradle-plugin", version.ref = "openapi-gradle-plugin-version" }
+
+[bundles]
+swagger = ["springdocOpenapiUi", "springdocOpenapiKotlin"]
+logging = ["kotlinLogging"]
