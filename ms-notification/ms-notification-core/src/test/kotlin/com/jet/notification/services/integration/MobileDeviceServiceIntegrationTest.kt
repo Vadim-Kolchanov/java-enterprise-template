@@ -3,6 +3,7 @@ package com.jet.notification.services.integration
 import com.jet.notification.domain.pushnotification.PushNotificationTopicCode
 import com.jet.notification.domain.pushnotification.PushNotificationTopicCode.Companion.toPushNotificationTopicCode
 import com.jet.notification.entities.MobileDeviceEntity
+import com.jet.notification.exceptions.MobileDeviceNotFoundByDeviceIdException
 import com.jet.notification.helpers.builders.MobileDeviceBuilder.registerOrUpdateMobileDeviceRequest
 import com.jet.notification.helpers.constants.MobileDeviceConstant.DEVICE_ID
 import com.jet.notification.helpers.constants.MobileDeviceConstant.FIREBASE_REGISTRATION_TOKEN
@@ -16,6 +17,7 @@ import io.mockk.verifyOrder
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.annotation.Rollback
@@ -94,6 +96,33 @@ class MobileDeviceServiceIntegrationTest {
                 pushNotificationProviderClient.subscribeToTopics(any())
                 pushNotificationProviderClient.unsubscribeFromTopics(any())
                 pushNotificationProviderClient.subscribeToTopics(any())
+            }
+        }
+    }
+
+    @Nested
+    open inner class DeleteMobileDeviceByDeviceId {
+
+        @Test
+        @Transactional
+        @Rollback(true)
+        open fun `Should successfully delete mobile device`() {
+            justRun { pushNotificationProviderClient.subscribeToTopics(any()) }
+            justRun { pushNotificationProviderClient.unsubscribeFromTopics(any()) }
+
+            val mobileDevice: MobileDeviceEntity = mobileDeviceService.registerOrUpdateMobileDevice(
+                request = registerOrUpdateMobileDeviceRequest()
+            )
+            assertThat(mobileDevice.deviceId).isEqualTo(DEVICE_ID)
+
+            mobileDeviceService.deleteMobileDeviceByDeviceId(mobileDevice.deviceId)
+
+            assertThrows<MobileDeviceNotFoundByDeviceIdException> {
+                mobileDeviceService.findByDeviceId(mobileDevice.deviceId)
+            }
+            verifyOrder {
+                pushNotificationProviderClient.subscribeToTopics(any())
+                pushNotificationProviderClient.unsubscribeFromTopics(any())
             }
         }
     }
