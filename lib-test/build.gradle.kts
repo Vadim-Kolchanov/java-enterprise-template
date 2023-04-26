@@ -12,9 +12,6 @@ plugins {
     `maven-publish`
     alias(libs.plugins.kotlinJvmPlugin)
     alias(libs.plugins.kotlinSpringPlugin)
-    alias(libs.plugins.kotlinJpaPlugin)
-    alias(libs.plugins.springDependencyManagementPlugin)
-    alias(libs.plugins.springBootPlugin)
 }
 
 repositories {
@@ -31,33 +28,20 @@ publishing {
 }
 
 dependencies {
-    implementation(libs.msNotificationApi)
-    implementation(libs.libCommon)
-    implementation(libs.libExceptionHandler)
-    implementation(libs.libLogging)
-
-    implementation(libs.springBootStarterWeb)
+    implementation(platform(libs.springBootDependencies))
     implementation(libs.springBootStarterDataJpa)
-//    implementation(libs.springBootStarterQuartz)
 
-    implementation(libs.flyway)
-    runtimeOnly(libs.postgresql)
-
-    implementation(libs.kotlinJdk8)
-
-    implementation(libs.firebaseAdmin)
-
-    testImplementation(libs.libTest)
-    testImplementation(libs.springBootStarterTest) {
+    implementation(libs.springBootStarterTest) {
         exclude(group = "org.junit.jupiter", module = "junit-jupiter")
         exclude(group = "org.mockito", module = "mockito-core")
         exclude(group = "org.mockito", module = "mockito-junit-jupiter")
     }
-    testImplementation(libs.mockk)
-    testImplementation(libs.springMockk)
-    testImplementation(libs.junitApi)
-    testImplementation(libs.junitParams)
-    testRuntimeOnly(libs.junitEngine)
+
+    implementation(libs.junitApi)
+    implementation(libs.testcontainersCore) {
+        exclude(group = "org.junit", module = "junit")
+    }
+    implementation(libs.testcontainersJunit)
 }
 
 tasks.withType<KotlinCompile> {
@@ -65,8 +49,4 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "17"
     }
-}
-
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
 }
