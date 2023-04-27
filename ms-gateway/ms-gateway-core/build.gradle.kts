@@ -12,6 +12,8 @@ plugins {
     `maven-publish`
     alias(libs.plugins.kotlinJvmPlugin)
     alias(libs.plugins.kotlinSpringPlugin)
+    alias(libs.plugins.springBootPlugin)
+    alias(libs.plugins.springDependencyManagementPlugin)
 }
 
 repositories {
@@ -28,9 +30,7 @@ publishing {
 }
 
 dependencies {
-    compileOnly(platform(libs.springBootDependencies))
-    compileOnly(libs.springBootStarterWeb)
-    compileOnly(libs.kotlinJdk8)
+    implementation(libs.libGatewayStarter)
 }
 
 tasks.withType<KotlinCompile> {
@@ -38,4 +38,8 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "17"
     }
+}
+
+tasks.getByName<Test>("test") {
+    useJUnitPlatform()
 }

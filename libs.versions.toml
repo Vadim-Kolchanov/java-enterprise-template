@@ -57,6 +57,7 @@ msNotificationApi = { module = "com.jet:ms-notification-api", version.ref = "not
 # External dependencies
 ## Kotlin
 kotlinJdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8" }
+kotlinReflect = { module = "org.jetbrains.kotlin:kotlin-reflect" }
 
 ## Logging
 kotlinLogging = { module = "io.github.microutils:kotlin-logging", version.ref = "kotlin-logging-version" }

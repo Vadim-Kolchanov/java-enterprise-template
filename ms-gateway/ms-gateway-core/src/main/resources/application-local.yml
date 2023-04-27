@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+settings:
+  gateway-filters:
+    basic-auth:
+      username: local
+      password: local

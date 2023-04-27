@@ -28,9 +28,12 @@ publishing {
 }
 
 dependencies {
-    compileOnly(platform(libs.springBootDependencies))
-    compileOnly(libs.springBootStarterWeb)
-    compileOnly(libs.kotlinJdk8)
+    api(libs.libExceptionHandler)
+
+    api(libs.springCloudStarterGateway)
+    api(libs.springCloudStarterFeign)
+    api(libs.kotlinJdk8)
+    api(libs.kotlinReflect)
 }
 
 tasks.withType<KotlinCompile> {

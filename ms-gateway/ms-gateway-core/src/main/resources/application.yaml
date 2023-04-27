@@ -1,0 +1,45 @@
+management:
+  server:
+    port: 8080
+
+spring:
+  application:
+    name: ms-gateway-core
+  cloud:
+    gateway:
+      enabled: true
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          "[/**]":
+            allowed-origins: ${CORS_CONFIGURATIONS_ALLOWED_ORIGINS:*}
+            allowed-headers: ${CORS_CONFIGURATIONS_ALLOWED_HEADERS:*}
+            allowed-methods: ${CORS_CONFIGURATIONS_ALLOWED_METHODS:*}
+      routes:
+        #region ms-notification-api
+        - id: register-or-update-mobile-device
+          uri: ${settings.ms.notification.url}
+          predicates:
+            - Path=/api/notification/mobile-devices
+            - Method=POST
+          filters:
+            - BasicAuthCheck
+
+        - id: delete-mobile-device-by-device-id
+          uri: ${settings.ms.notification.url}
+          predicates:
+            - Path=/api/notification/mobile-devices/{device-id}
+            - Method=DELETE
+          filters:
+            - BasicAuthCheck
+
+        #endregion ms-notification-api
+
+settings:
+  ms:
+    notification:
+      url: ${SETTINGS_MS_NOTIFICATION_URL:http://localhost:8081}
+  gateway-filters:
+    basic-auth:
+      username: ${SETTINGS_GATEWAY_FILTERS_BASIC_AUTH_USERNAME}
+      password: ${SETTINGS_GATEWAY_FILTERS_BASIC_AUTH_PASSWORD}
