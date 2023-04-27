@@ -3,7 +3,7 @@ package com.jet.notification.providers.impl
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingException
 import com.google.firebase.messaging.MessagingErrorCode
-import com.jet.exceptions.common.IllegalStateBaseException
+import com.jet.exceptionhandler.exceptions.common.IllegalStateBaseException
 import com.jet.notification.entities.MobileDeviceEntity
 import com.jet.notification.entities.pushnotification.PushNotificationEntity
 import com.jet.notification.entities.pushnotification.PushNotificationTopicEntity

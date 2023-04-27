@@ -30,7 +30,12 @@ publishing {
 dependencies {
     compileOnly(platform(libs.springBootDependencies))
     compileOnly(libs.springBootStarterWeb)
+    compileOnly(libs.springCloudStarterFeign)
+
+    compileOnly(libs.kotlinLogging)
     compileOnly(libs.kotlinJdk8)
+
+    compileOnly(libs.hibernateValidator)
 }
 
 tasks.withType<KotlinCompile> {

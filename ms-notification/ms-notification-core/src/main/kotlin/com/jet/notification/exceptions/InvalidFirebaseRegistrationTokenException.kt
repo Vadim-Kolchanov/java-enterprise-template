@@ -1,7 +1,7 @@
 package com.jet.notification.exceptions
 
 import com.google.firebase.messaging.FirebaseMessagingException
-import com.jet.exceptions.BaseException
+import com.jet.exceptionhandler.exceptions.BaseException
 import org.springframework.http.HttpStatus
 
 class InvalidFirebaseRegistrationTokenException(

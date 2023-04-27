@@ -32,6 +32,7 @@ dependencies {
     implementation(libs.springCloudStarterFeign)
     implementation(libs.bundles.swagger)
     implementation(libs.kotlinJdk8)
+    implementation(libs.hibernateValidator)
 }
 
 tasks.withType<KotlinCompile> {

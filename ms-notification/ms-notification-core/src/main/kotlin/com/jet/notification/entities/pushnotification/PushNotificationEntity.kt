@@ -3,7 +3,7 @@ package com.jet.notification.entities.pushnotification
 import com.google.firebase.messaging.Message
 import com.google.firebase.messaging.Notification
 import com.jet.common.entities.UUIDAbstractEntity
-import com.jet.exceptions.common.IllegalStateBaseException
+import com.jet.exceptionhandler.exceptions.common.IllegalStateBaseException
 import java.time.OffsetDateTime
 import java.util.UUID
 import javax.persistence.Entity

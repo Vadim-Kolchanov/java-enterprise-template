@@ -1,14 +1,12 @@
-package com.jet.notification.exceptions
+package com.jet.exceptionhandler.exceptions.common
 
 import com.jet.exceptionhandler.exceptions.BaseException
 import org.springframework.http.HttpStatus
 
-class FirebaseInteractionException(
+class IllegalStateBaseException(
     message: String,
-    cause: Throwable,
 ) : BaseException(
-    errorMessage = "Firebase interaction error",
     httpStatus = HttpStatus.INTERNAL_SERVER_ERROR,
+    errorMessage = "Invalid data state in the system",
     message = message,
-    cause = cause,
 )
