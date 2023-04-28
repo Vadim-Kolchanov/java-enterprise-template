@@ -5,9 +5,9 @@ import com.jet.notification.domain.pushnotification.PushNotificationTopicCode.Co
 import com.jet.notification.entities.MobileDeviceEntity
 import com.jet.notification.exceptions.MobileDeviceNotFoundByDeviceIdException
 import com.jet.notification.helpers.builders.MobileDeviceBuilder.registerOrUpdateMobileDeviceRequest
-import com.jet.notification.helpers.constants.MobileDeviceConstant.DEVICE_ID
-import com.jet.notification.helpers.constants.MobileDeviceConstant.FIREBASE_REGISTRATION_TOKEN
-import com.jet.notification.helpers.constants.MobileDeviceConstant.MOBILE_PLATFORM
+import com.jet.notification.helpers.constants.MobileDeviceConstants.DEVICE_ID
+import com.jet.notification.helpers.constants.MobileDeviceConstants.FIREBASE_REGISTRATION_TOKEN
+import com.jet.notification.helpers.constants.MobileDeviceConstants.MOBILE_PLATFORM
 import com.jet.notification.providers.PushNotificationProviderClient
 import com.jet.notification.services.MobileDeviceService
 import com.jet.test.annotations.WithPostgres

@@ -32,6 +32,7 @@ dependencies {
     implementation(platform(libs.springBootDependencies))
     implementation(libs.springBootStarterDataJpa)
     implementation(libs.kotlinJdk8)
+    implementation(libs.springCloudStarterFeign)
 }
 
 tasks.withType<KotlinCompile> {

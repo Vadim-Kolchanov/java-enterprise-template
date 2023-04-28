@@ -17,6 +17,7 @@ spring:
             allowed-methods: ${CORS_CONFIGURATIONS_ALLOWED_METHODS:*}
       routes:
         #region ms-notification-api
+        #region MobileDeviceApi
         - id: register-or-update-mobile-device
           uri: ${settings.ms.notification.url}
           predicates:
@@ -32,6 +33,31 @@ spring:
             - Method=DELETE
           filters:
             - BasicAuthCheck
+        #endregion MobileDeviceApi
+
+        #region PushNotificationApi
+        - id: get-push-notification-topics
+          uri: ${settings.ms.notification.url}
+          predicates:
+            - Path=/api/notification/push/topics
+            - Method=GET
+
+        - id: send-push-notification-to-mobile-device
+          uri: ${settings.ms.notification.url}
+          predicates:
+            - Path=/api/notification/push/send-to-mobile-device
+            - Method=POST
+          filters:
+            - BasicAuthCheck
+
+        - id: send-push-notification-to-topic
+          uri: ${settings.ms.notification.url}
+          predicates:
+            - Path=/api/notification/push/send-to-topic
+            - Method=POST
+          filters:
+            - BasicAuthCheck
+        #endregion PushNotificationApi
 
         #endregion ms-notification-api
 

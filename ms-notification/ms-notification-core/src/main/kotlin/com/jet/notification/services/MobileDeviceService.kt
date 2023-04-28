@@ -8,6 +8,7 @@ import com.jet.notification.exceptions.MobileDeviceNotFoundByDeviceIdException
 import com.jet.notification.mappers.MobileDeviceDTOMapper.toMobileDeviceEntity
 import com.jet.notification.providers.PushNotificationProviderClient
 import com.jet.notification.repositories.MobileDeviceRepository
+import com.jet.notification.services.pushnotification.PushNotificationTopicService
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
