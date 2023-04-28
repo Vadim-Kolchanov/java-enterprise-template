@@ -33,6 +33,7 @@ dependencies {
     implementation(libs.springBootStarterDataJpa)
     implementation(libs.kotlinJdk8)
     implementation(libs.springCloudStarterFeign)
+    implementation(libs.springBootStarterQuartz)
 }
 
 tasks.withType<KotlinCompile> {

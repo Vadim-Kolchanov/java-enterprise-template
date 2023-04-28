@@ -38,7 +38,7 @@ dependencies {
 
     implementation(libs.springBootStarterWeb)
     implementation(libs.springBootStarterDataJpa)
-//    implementation(libs.springBootStarterQuartz)
+    implementation(libs.springBootStarterQuartz)
 
     implementation(libs.flyway)
     runtimeOnly(libs.postgresql)

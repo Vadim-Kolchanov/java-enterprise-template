@@ -16,6 +16,16 @@ spring:
       ddl-auto: validate
   flyway:
     enabled: ${SPRING_FLYWAY_ENABLED:true}
+  quartz:
+    job-store-type: jdbc
+    properties.org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+    properties.org.quartz.jobStore.tablePrefix: quartz_
+    properties.org.quartz.scheduler.instanceName: NotificationQuartz
+    properties.org.quartz.scheduler.instanceId: AUTO
+    properties.org.quartz.jobStore.isClustered: true
+    properties.org.quartz.jobStore.clusterCheckinInterval: 30000
+    auto-startup: true
+    jdbc.initialize-schema: never
 
 springdoc:
   api-docs:
@@ -28,5 +38,11 @@ settings:
   env: ${SETTINGS_ENV}
   logging:
     level: ${SETTINGS_LOGGING_LEVEL:INFO}
+  cron:
+    push-notification:
+      # Every month
+      validate-firebase-registration-token: ${SETTINGS_CRON_PUSH_NOTIFICATION_VALIDATE_FIREBASE_REGISTRATION_TOKEN:0 0 0 ? * *}
   push-notification:
     provider: ${SETTINGS_PUSH_NOTIFICATION_PROVIDER:local}
+    firebase-registration-token-expires-in-days: ${SETTINGS_PUSH_NOTIFICATION_FIREBASE_REGISTRATION_TOKEN_EXPIRES_IN_DAYS:30}
+    batch-size-for-deleting-expired-firebase-registration-token: ${SETTINGS_PUSH_NOTIFICATION_BATCH_SIZE_FOR_DELETING_EXPIRED_FIREBASE_REGISTRATION_TOKEN:100}
