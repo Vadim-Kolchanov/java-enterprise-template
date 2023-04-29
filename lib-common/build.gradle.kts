@@ -31,9 +31,13 @@ publishing {
 dependencies {
     implementation(platform(libs.springBootDependencies))
     implementation(libs.springBootStarterDataJpa)
-    implementation(libs.kotlinJdk8)
     implementation(libs.springCloudStarterFeign)
     implementation(libs.springBootStarterQuartz)
+    implementation(libs.springKafka)
+
+    implementation(libs.kotlinJdk8)
+    implementation(libs.jacksonKotlinModule)
+    implementation(libs.jacksonDatatype)
 }
 
 tasks.withType<KotlinCompile> {

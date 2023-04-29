@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.springBootStarterWeb)
     implementation(libs.springBootStarterDataJpa)
     implementation(libs.springBootStarterQuartz)
+    implementation(libs.springKafka)
 
     implementation(libs.flyway)
     runtimeOnly(libs.postgresql)

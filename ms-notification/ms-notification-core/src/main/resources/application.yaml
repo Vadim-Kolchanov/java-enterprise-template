@@ -26,6 +26,18 @@ spring:
     properties.org.quartz.jobStore.clusterCheckinInterval: 30000
     auto-startup: true
     jdbc.initialize-schema: never
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+    security:
+      protocol: ${KAFKA_SECURITY_PROTOCOL:SASL_PLAINTEXT}
+    consumer:
+      group-id: ${settings.env}-${spring.application.name}
+    jaas:
+      enabled: ${KAFKA_JAAS_ENABLED:false}
+      login-module: org.apache.kafka.common.security.scram.ScramLoginModule
+      options:
+        sasl.mechanism: ${KAFKA_JAAS_OPTIONS_SASL_MECHANISM:SCRAM-SHA-512}
+        sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="${KAFKA_USERNAME}" password="${KAFKA_PASSWORD}";
 
 springdoc:
   api-docs:
@@ -46,3 +58,6 @@ settings:
     provider: ${SETTINGS_PUSH_NOTIFICATION_PROVIDER:local}
     firebase-registration-token-expires-in-days: ${SETTINGS_PUSH_NOTIFICATION_FIREBASE_REGISTRATION_TOKEN_EXPIRES_IN_DAYS:30}
     batch-size-for-deleting-expired-firebase-registration-token: ${SETTINGS_PUSH_NOTIFICATION_BATCH_SIZE_FOR_DELETING_EXPIRED_FIREBASE_REGISTRATION_TOKEN:100}
+  kafka:
+    topics:
+      push-notification: ${settings.env}-push-notification
