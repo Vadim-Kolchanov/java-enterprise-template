@@ -36,6 +36,7 @@ mockk-version = "1.12.3"
 
 # Plugins
 openapi-gradle-plugin-version = "1.3.4"
+sonarqube-plugin-version = "3.3"
 
 ## Validators
 hibernate-validator-version = "6.2.3.Final"
@@ -107,6 +108,7 @@ kotlinJvmPlugin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-versi
 kotlinSpringPlugin = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin-version" }
 kotlinJpaPlugin = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin-version" }
 openapiGradlePlugin = { id = "org.springdoc.openapi-gradle-plugin", version.ref = "openapi-gradle-plugin-version" }
+sonarqubePlugin = { id = "org.sonarqube", version.ref = "sonarqube-plugin-version" }
 
 [bundles]
 swagger = ["springdocOpenapiUi", "springdocOpenapiKotlin"]

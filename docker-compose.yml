@@ -13,6 +13,42 @@ services:
       - postgres-data:/var/lib/postgresql/data/
     ports:
       - "5432:5432"
+    networks:
+      - sonarqube
+
+  # To resolve local issue with Docker Host Requirements add parameters:
+  ##  privileged: true
+  ##  command: >
+  ##    sh -c "sysctl -w vm.max_map_count=524288 &&
+  ##           sysctl -w fs.file-max=131072"
+  #
+  # Remove them after the first run and run again
+  sonarqube:
+    image: sonarqube:8.9-community
+    container_name: sonarqube
+    depends_on:
+      - postgres
+    ports:
+      - "9000:9000"
+    networks:
+      - sonarqube
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://postgres:5432/sonarqube
+      SONAR_JDBC_USERNAME: local
+      SONAR_JDBC_PASSWORD: local
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+      - sonarqube-extensions:/opt/sonarqube/extensions
+      - sonarqube-logs:/opt/sonarqube/logs
+      - sonarqube-temp:/opt/sonarqube/temp
 
 volumes:
   postgres-data:
+  sonarqube-data:
+  sonarqube-extensions:
+  sonarqube-logs:
+  sonarqube-temp:
+
+networks:
+  sonarqube:
+    driver: bridge

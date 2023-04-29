@@ -15,6 +15,7 @@ plugins {
     alias(libs.plugins.kotlinJpaPlugin)
     alias(libs.plugins.springDependencyManagementPlugin)
     alias(libs.plugins.springBootPlugin)
+    alias(libs.plugins.sonarqubePlugin)
 }
 
 repositories {
@@ -58,6 +59,12 @@ dependencies {
     testImplementation(libs.junitApi)
     testImplementation(libs.junitParams)
     testRuntimeOnly(libs.junitEngine)
+}
+
+sonarqube {
+    properties {
+        property("sonar.sourceEncoding", "UTF-8")
+    }
 }
 
 tasks.withType<KotlinCompile> {
