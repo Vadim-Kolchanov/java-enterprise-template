@@ -1,0 +1,42 @@
+management:
+  server:
+    port: 8082
+
+spring:
+  application:
+    name: ms-object-storage-core
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: ${SPRING_FLYWAY_ENABLED:true}
+  servlet:
+    multipart:
+      max-file-size: ${SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE:128MB}
+      max-request-size: ${SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE:128MB}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  use-fqn: true
+
+settings:
+  env: ${SETTINGS_ENV}
+  logging:
+    level: ${SETTINGS_LOGGING_LEVEL:INFO}
+  object-storage:
+    provider: ${SETTINGS_OBJECT_STORAGE_PROVIDER:local}
+    s3-client:
+      url: ${SETTINGS_OBJECT_STORAGE_S3_CLIENT_URL}
+      access-key-id: ${SETTINGS_OBJECT_STORAGE_S3_CLIENT_ACCESS_KEY_ID}
+      secret-access-key: ${SETTINGS_OBJECT_STORAGE_S3_CLIENT_SECRET_ACCESS_KEY}
+      bucket: ${SETTINGS_OBJECT_STORAGE_S3_CLIENT_BUCKET}
+      region: ${SETTINGS_OBJECT_STORAGE_S3_CLIENT_REGION}

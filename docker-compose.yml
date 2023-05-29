@@ -65,12 +65,27 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: adminuser
+      MINIO_ROOT_PASSWORD: adminpassword
+      MINIO_SITE_REGION: eu-west-1
+    volumes:
+      - minio-data:/data
+    command: server --console-address ":9001" /data
+
 volumes:
   postgres-data:
   sonarqube-data:
   sonarqube-extensions:
   sonarqube-logs:
   sonarqube-temp:
+  minio-data:
 
 networks:
   sonarqube:

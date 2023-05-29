@@ -9,6 +9,7 @@ lib-common-version = "0.0.1"
 
 ## Api
 notification-api-version = "0.0.1"
+object-storage-api-version = "0.0.1"
 
 # External dependencies
 ## Kotlin
@@ -46,6 +47,7 @@ hibernate-validator-version = "6.2.3.Final"
 firebase-admin-version = "9.1.1"
 hibernate-jsonb-version = "2.20.0"
 apache-common-lang3-version = "3.0"
+awsS3-version = "2.17.209"
 
 [libraries]
 # Project modules
@@ -58,6 +60,7 @@ libCommon = { module = "com.jet:lib-common", version.ref = "lib-common-version" 
 
 ## Api
 msNotificationApi = { module = "com.jet:ms-notification-api", version.ref = "notification-api-version" }
+msObjectStorageApi = { module = "com.jet:ms-object-storage-api", version.ref = "object-storage-api-version" }
 
 # External dependencies
 ## Kotlin
@@ -107,6 +110,7 @@ hibernateValidator = { module = "org.hibernate:hibernate-validator", version.ref
 firebaseAdmin = { module = "com.google.firebase:firebase-admin", version.ref = "firebase-admin-version" }
 hibernateJsonb = { module = "com.vladmihalcea:hibernate-types-55", version.ref = "hibernate-jsonb-version" }
 apacheCommonLang3 = { module = "org.apache.commons:commons-lang3", version.ref = "apache-common-lang3-version" }
+awsS3 = { module = "software.amazon.awssdk:s3", version.ref = "awsS3-version" }
 
 [plugins]
 springBootPlugin = { id = "org.springframework.boot", version.ref = "spring-boot-version" }

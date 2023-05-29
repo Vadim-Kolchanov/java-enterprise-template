@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/objectstorage
+    username: local
+    password: local
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+settings:
+  env: local
+  object-storage:
+    s3-client:
+      url: http://localhost:9000
+      access-key-id: adminuser
+      secret-access-key: adminpassword
+      bucket: local
+      region: eu-west-1
