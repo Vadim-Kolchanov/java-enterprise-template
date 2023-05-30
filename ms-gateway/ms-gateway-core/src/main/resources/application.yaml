@@ -61,10 +61,58 @@ spring:
 
         #endregion ms-notification-api
 
+        #region ms-object-storage-api
+        #region FileApi
+        - id: upload-file
+          uri: ${settings.ms.object-storage.url}
+          predicates:
+            - Path=/api/object-storage/files
+            - Method=POST
+          filters:
+            - BasicAuthCheck
+
+        - id: get-file-details-by-id
+          uri: ${settings.ms.object-storage.url}
+          predicates:
+            - Path=/api/object-storage/files/{id}
+            - Method=GET
+          filters:
+            - BasicAuthCheck
+
+        - id: get-files-details
+          uri: ${settings.ms.object-storage.url}
+          predicates:
+            - Path=/api/object-storage/files
+            - Method=GET
+          filters:
+            - BasicAuthCheck
+
+        - id: delete-file-by-id
+          uri: ${settings.ms.object-storage.url}
+          predicates:
+            - Path=/api/object-storage/files/{id}
+            - Method=DELETE
+          filters:
+            - BasicAuthCheck
+
+        - id: delete-files-by-ids
+          uri: ${settings.ms.object-storage.url}
+          predicates:
+            - Path=/api/object-storage/files
+            - Method=DELETE
+          filters:
+            - BasicAuthCheck
+
+        #endregion FileApi
+
+        #endregion ms-object-storage-api
+
 settings:
   ms:
     notification:
       url: ${SETTINGS_MS_NOTIFICATION_URL:http://localhost:8081}
+    object-storage:
+      url: ${SETTINGS_MS_OBJECT_STORAGE_URL:http://localhost:8082}
   gateway-filters:
     basic-auth:
       username: ${SETTINGS_GATEWAY_FILTERS_BASIC_AUTH_USERNAME}

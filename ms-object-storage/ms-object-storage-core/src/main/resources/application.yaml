@@ -18,6 +18,7 @@ spring:
     enabled: ${SPRING_FLYWAY_ENABLED:true}
   servlet:
     multipart:
+      enabled: ${SPRING_SERVLET_MULTIPART_ENABLED:true}
       max-file-size: ${SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE:128MB}
       max-request-size: ${SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE:128MB}
 

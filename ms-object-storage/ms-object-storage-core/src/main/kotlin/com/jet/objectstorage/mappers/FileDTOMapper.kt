@@ -8,9 +8,13 @@ import org.springframework.web.util.UriComponents
 
 object FileDTOMapper {
 
-    fun MultipartFile.toFileEntity(folder: String, uri: UriComponents) = FileEntity(
+    fun MultipartFile.toFileEntity(
+        folder: String,
+        fileName: String,
+        uri: UriComponents
+    ) = FileEntity(
         folder = folder,
-        fileName = name,
+        fileName = fileName,
         uri = uri.toUriString(),
         contentType = contentType ?: throw FileContentTypeNotFoundException(),
         sizeInBytes = size,

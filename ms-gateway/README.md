@@ -17,6 +17,7 @@ features such as routing, filtering, and load balancing.
 | CORS_CONFIGURATIONS_ALLOWED_HEADERS          | *                     |
 | CORS_CONFIGURATIONS_ALLOWED_METHODS          | *                     |
 | SETTINGS_MS_NOTIFICATION_URL                 | http://localhost:8081 |
+| SETTINGS_MS_OBJECT_STORAGE_URL               | http://localhost:8082 |
 | SETTINGS_GATEWAY_FILTERS_BASIC_AUTH_USERNAME |                       |
 | SETTINGS_GATEWAY_FILTERS_BASIC_AUTH_PASSWORD |                       |
 

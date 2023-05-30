@@ -30,6 +30,8 @@ publishing {
 dependencies {
     implementation(platform(libs.springBootDependencies))
     implementation(libs.springCloudStarterFeign)
+    implementation(libs.springDataCommons)
+
     implementation(libs.bundles.swagger)
     implementation(libs.kotlinJdk8)
     implementation(libs.hibernateValidator)

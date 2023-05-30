@@ -93,6 +93,7 @@ springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-
 springBootStarterDataJpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
 springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test" }
 springBootStarterQuartz = { module = "org.springframework.boot:spring-boot-starter-quartz" }
+springDataCommons = { module = "org.springframework.data:spring-data-commons" }
 
 ## Tests
 junitApi = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-version" }
