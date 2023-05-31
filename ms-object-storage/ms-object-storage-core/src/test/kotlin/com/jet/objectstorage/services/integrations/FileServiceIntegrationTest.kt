@@ -1,6 +1,8 @@
 package com.jet.objectstorage.services.integrations
 
 import com.jet.objectstorage.dto.FileDetailsDTO
+import com.jet.objectstorage.exceptions.FileNotFoundException
+import com.jet.objectstorage.exceptions.FileUriAlreadyExistsException
 import com.jet.objectstorage.services.FileService
 import com.jet.objectstorage.services.integrations.FileServiceIntegrationTest.Companion.MINIO_BUCKET
 import com.jet.test.annotations.WithMinio
@@ -9,6 +11,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
@@ -40,12 +43,7 @@ class FileServiceIntegrationTest {
         @Transactional
         @Rollback(true)
         open fun `Should successfully upload file to object storage`() {
-            val mockFile: MultipartFile = MockMultipartFile(
-                FILE_NAME,
-                ORIGINAL_FILE_NAME,
-                CONTENT_TYPE,
-                CONTENT.encodeToByteArray()
-            )
+            val mockFile: MultipartFile = mockFile()
 
             val fileDetails: FileDetailsDTO = fileService.uploadFile(FOLDER, mockFile)
 
@@ -54,6 +52,36 @@ class FileServiceIntegrationTest {
                 assertThat(it.contentType).isEqualTo(CONTENT_TYPE)
                 assertThat(it.sizeInBytes).isEqualTo(CONTENT.encodeToByteArray().size.toLong())
             })
+        }
+
+        @Test
+        @Transactional
+        @Rollback(true)
+        open fun `Should throw exception if file uri already exists`() {
+            val mockFile: MultipartFile = mockFile()
+            fileService.uploadFile(FOLDER, mockFile)
+
+            assertThrows<FileUriAlreadyExistsException> {
+                fileService.uploadFile(FOLDER, mockFile)
+            }
+        }
+    }
+
+    @Nested
+    open inner class DeleteFileById {
+
+        @Test
+        @Transactional
+        @Rollback(true)
+        open fun `Should successfully delete file from object storage`() {
+            val mockFile: MultipartFile = mockFile()
+            val fileDetails: FileDetailsDTO = fileService.uploadFile(FOLDER, mockFile)
+
+            fileService.deleteFileById(fileDetails.id)
+
+            assertThrows<FileNotFoundException> {
+                fileService.getFileById(fileDetails.id)
+            }
         }
     }
 
@@ -72,5 +100,12 @@ class FileServiceIntegrationTest {
         fun createBucket(@Autowired s3Client: S3Client) {
             s3Client.createBucket(CreateBucketRequest.builder().bucket(MINIO_BUCKET).build())
         }
+
+        private fun mockFile(): MultipartFile = MockMultipartFile(
+            FILE_NAME,
+            ORIGINAL_FILE_NAME,
+            CONTENT_TYPE,
+            CONTENT.encodeToByteArray()
+        )
     }
 }
