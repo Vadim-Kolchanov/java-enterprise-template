@@ -20,7 +20,7 @@ class LocalObjectStorageProviderClient : ObjectStorageProviderClient {
     }
 
     override fun deleteObject(file: FileEntity) {
-        log.info { "Local. Deleting object [${file.toFileDetailsDTO()}]" }
+        log.info { "Local. Deleting object [${file.toFileDetailsDTO()}] from object storage" }
     }
 
     override fun deleteObjects(files: Collection<FileEntity>): Collection<FileEntity> {
